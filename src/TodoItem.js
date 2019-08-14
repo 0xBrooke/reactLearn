@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import PropTypes from 'prop-types'
 class TodoItem extends Component{
     constructor(props) {
         super(props);
@@ -20,4 +20,14 @@ class TodoItem extends Component{
     }
 }
 
+// 检测父组件传过来的参数类型
+TodoItem.propTypes = {
+    content: PropTypes.string.isRequired, // isRequired父组件必须传改参数
+    deleteItem: PropTypes.func,
+    index:PropTypes.number,
+}
+// 父组件没有传过来值，则规定默认值
+TodoItem.defaultProps = {
+    content:"默认值"
+}
 export default TodoItem

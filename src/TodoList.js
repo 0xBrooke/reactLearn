@@ -1,11 +1,13 @@
 import React, { Component, Fragment } from 'react'
 import TodoItem from './TodoItem'
+import Test from './Test'
 import './style.css'
 class TodoList extends Component {
     // 是最优先于其他函数执行的函数
     constructor(props) {
         super(props);
         // 组件的状态 存储组件中的数据
+        // 当组件中的state或者props发生改变的时候或者父组件的render的重新执行的时候，render函数都会重新的执行
         this.state = {
             inputValue: '',
             list: [],
@@ -16,6 +18,7 @@ class TodoList extends Component {
     }
 
     render() {
+        console.log("render")
         return (
             <Fragment>
                 {/* Fragment  占位符 */}
@@ -32,6 +35,7 @@ class TodoList extends Component {
                 <ul>
                     {this.getTodoItem()}
                 </ul>
+                <Test content={this.state.inputValue}></Test>
             </Fragment>
         )
     }
