@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react'
 import TodoItem from './TodoItem'
-import Test from './Test'
 import './style.css'
 class TodoList extends Component {
     // 是最优先于其他函数执行的函数
@@ -15,6 +14,27 @@ class TodoList extends Component {
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleBtnClick = this.handleBtnClick.bind(this);
         this.handleBtndel = this.handleBtndel.bind(this)
+    }
+    // 组件被挂载到页面之前执行
+    componentWillMount() {
+        console.log("componentWillMount")
+    }
+    // 组件被挂载到页面之后执行
+    componentDidMount() {
+        console.log("componentDidMount")
+    }
+    // 组件在更新之前
+    shouldComponentUpdate() {
+        console.log("shouldComponentUpdate")
+        return true  //检查组件是否被更新
+    }
+    // 组件被更新之前 在shouldComponentUpdate之后执行 但取决于shouldComponentUpdate返回值，返回true才执行
+    componentWillUpdate() {
+        console.log("componentWillUpdate")
+    }
+    // 组件更新完成之后执行
+    componentDidUpdate() {
+        console.log("componentDidUpdate")
     }
 
     render() {
@@ -32,10 +52,9 @@ class TodoList extends Component {
                     />
                     <button type='button' onClick={this.handleBtnClick}>提交</button>
                 </div>
-                <ul>
+                <ul ref={(ul)=>{ this.ul = ul }}>
                     {this.getTodoItem()}
                 </ul>
-                <Test content={this.state.inputValue}></Test>
             </Fragment>
         )
     }
@@ -44,7 +63,7 @@ class TodoList extends Component {
         return this.state.list.map((item, index) => {
             return (
                 <TodoItem
-                    key={index}
+                    key={item}
                     content={item}
                     index={index}
                     deleteItem={this.handleBtndel}
@@ -60,6 +79,7 @@ class TodoList extends Component {
         //     inputValue: e.target.value
         // })
         const value = e.target.value;
+        // const value1 = this.input.value;
         this.setState(() => ({
             inputValue: value
         }))
@@ -70,10 +90,14 @@ class TodoList extends Component {
         //     list: [...this.state.list, this.state.inputValue],
         //     inputValue: ''
         // })
+
+        // setState 函数是异步的，因此想操作Dom是，写在回调函数中
         this.setState((prevState) => ({
             list: [...prevState.list, this.state.inputValue],
             inputValue: ''
-        }))
+        }), () => {
+                console.log(this.ul.querySelectorAll("div").length)
+        })
     }
     // 删除
     handleBtndel(index) {

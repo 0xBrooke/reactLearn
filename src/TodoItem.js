@@ -5,6 +5,14 @@ class TodoItem extends Component{
         super(props);
         this.handleDel = this.handleDel.bind(this)
     }
+    // 第一次不会执行，
+    componentWillReceiveProps() {
+        console.log("componentWillReceiveProps")
+    }
+    // 当组件即将从页面中移除的时候
+    componentWillUnmount() {
+        console.log("child componentWillUnmount")
+    }
     render() {
         const { content } = this.props;
         return (
