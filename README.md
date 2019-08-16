@@ -29,5 +29,15 @@ react 的开发调试工具
     }
 
 
+     // 第一次不会执行，
+    componentWillReceiveProps() {
+        console.log("componentWillReceiveProps")
+    }
+    // 当组件即将从页面中移除的时候
+    componentWillUnmount() {
+        console.log("child componentWillUnmount")
+    }
+
+
 
 
