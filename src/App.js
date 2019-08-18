@@ -18,7 +18,7 @@ class App extends React.Component{
   render() {
     return (
       <div>
-        我是新的
+        我是新的凄凄切切无
       </div>
     )
   }
