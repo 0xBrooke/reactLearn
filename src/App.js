@@ -28,10 +28,7 @@ class App extends React.Component {
   render() {
     return (
       <Fragment>
-        <CSSTransition in={this.state.show} timeout={1000}>
-          <div>我发顺丰似睡非睡</div>
-        </CSSTransition>
-
+        <div className={this.state.show? "show":"hide"}>我发顺丰似睡非睡</div>
         <button onClick={this.handleTaggole}>taggole</button>
       </Fragment>
 
