@@ -5,7 +5,7 @@ class MyRedux extends Component {
     render() {
         return (
             <div>
-                <Input type="text" placeholder='dd' />
+                <Input type="text" placeholder='dd'/>
             </div>
 
         )
