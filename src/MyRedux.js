@@ -1,16 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
 import 'antd/dist/antd.css';
 import { Input } from 'antd';
-class MyRedux extends React.Component{
-    constructor(props) {
-        super(props)
-    }
+class MyRedux extends Component {
     render() {
         return (
             <div>
-                <input type="text" placeholder='dd'/>
+                <Input type="text" placeholder='dd' />
             </div>
-           
+
         )
     }
 }
