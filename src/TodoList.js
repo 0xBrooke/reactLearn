@@ -39,6 +39,7 @@ class TodoList extends Component {
     // 放ajax的
     componentDidMount() {
         axios.get('http://localhost:3000/id').then((res) => {
+            
             this.setState(() => ({
                 list:[...res.data.arr]
             }))
