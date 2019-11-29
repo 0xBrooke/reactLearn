@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import 'antd/dist/antd.css';
 import { Input, Button, List } from 'antd';
 import store from './store'
-import {CHANGE_INPUT_VALUE,ADD_TODO_ITEM,DEL_TODO_ITEM} from './store/actionTypes'
+import { getInputChangeAciton,getAddItemAction,delAddItemAction } from './store/actionCreators'
 class MyRedux extends Component {
   constructor(props) {
     super(props);
@@ -28,8 +28,8 @@ class MyRedux extends Component {
           <List style={{ marginTop: '10px' }}
             bordered
             dataSource={this.state.list}
-            renderItem={(item,index) => (
-              <List.Item onClick={this.handleBtnDel.bind(this,index)}>
+            renderItem={(item, index) => (
+              <List.Item onClick={this.handleBtnDel.bind(this, index)}>
                 {item}
               </List.Item>
             )}
@@ -39,26 +39,18 @@ class MyRedux extends Component {
     )
   }
   changeInput(e) {
-    const action = {
-      type: CHANGE_INPUT_VALUE,
-      value: e.target.value,
-    }
+    const action = getInputChangeAciton(e.target.value)
     store.dispatch(action);
   }
   handleStoreChange() {
     this.setState(store.getState())
   }
   handleBtnClick() {
-    const action = {
-      type: ADD_TODO_ITEM,
-    };
+    const action = getAddItemAction()
     store.dispatch(action)
   }
   handleBtnDel(index) {
-    const action = {
-      type: DEL_TODO_ITEM,
-      index:index
-    };
+    const action = delAddItemAction(index)
     store.dispatch(action)
   }
 }
